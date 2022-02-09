@@ -15,7 +15,7 @@ export const formatWeekendDates = (startDate: Date, duration: number) => {
   return `${format(startDate, longFormat)} to ${format(endDate, longFormat)}`;
 };
 
-export const formatReportDates = (startDate: Date, endDate: Date) => {
+export const formatReportDates = (startDate: Date, endDate: Date | null) => {
   if (endDate == null) {
     return format(startDate, longFormat);
   }

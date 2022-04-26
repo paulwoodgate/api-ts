@@ -126,4 +126,6 @@ eventSchema.virtual('formattedCost').get(function (this: { fuelCost: number }) {
   return `£${this.fuelCost.toFixed(2)}`;
 });
 
-export const Event = model<EventDocument>('Event', eventSchema);
+const Event = model<EventDocument>('Event', eventSchema);
+
+export default Event;

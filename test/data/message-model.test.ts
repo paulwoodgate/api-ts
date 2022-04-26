@@ -1,4 +1,4 @@
-import { Message } from './../../src/models/message-model';
+import Message from './../../src/data/message-document';
 
 describe('Message Model Tests', () => {
   test('it should fail validation if name is missing', () => {
@@ -11,6 +11,7 @@ describe('Message Model Tests', () => {
 
     expect(err?.errors['name'].message).toBe('Please enter your name');
   });
+
   test('it should fail validation if email is missing', () => {
     const msg = new Message({
       name: 'Fred Bloggs',
@@ -22,6 +23,7 @@ describe('Message Model Tests', () => {
 
     expect(err?.errors['email'].message).toBe('Please enter your email');
   });
+
   test('it should fail validation if email is invalid', () => {
     const msg = new Message({
       name: 'Fred Bloggs',
@@ -33,6 +35,7 @@ describe('Message Model Tests', () => {
 
     expect(err?.errors['email'].message).toBe('That is not a valid email address');
   });
+  
   test('it should fail validation if message is missing', () => {
     const msg = new Message({
       name: 'Fred Bloggs',

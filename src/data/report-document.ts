@@ -21,14 +21,6 @@ export interface ReportDocument {
   photos: ReportPhoto[];
 }
 
-export interface ReportSummaryDocument {
-  id: string;
-  date: string;
-  title: string;
-  year: number;
-  coverPhoto: string;
-}
-
 const reportSchema = new Schema({
   id: {
     type: String,

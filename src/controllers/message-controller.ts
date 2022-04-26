@@ -1,4 +1,4 @@
-import { Message } from '../models/message-model';
+import Message from '../data/message-document';
 import Email from '../utils/email-service';
 import { Request, Response } from 'express';
 

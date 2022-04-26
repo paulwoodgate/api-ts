@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import nodemailer from 'nodemailer';
-import { MessageDocument } from '../models/message-model';
+import { MessageDocument } from '../data/message-document';
 import * as SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 export default {

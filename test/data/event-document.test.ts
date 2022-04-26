@@ -1,4 +1,4 @@
-import { Event } from './../../src/models/event-model';
+import Event from './../../src/data/event-document';
 
 describe('Event Model Tests', () => {
   describe('Date Tests', () => {

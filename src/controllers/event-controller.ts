@@ -1,6 +1,6 @@
 import { startOfDay } from 'date-fns';
 import { Request, Response } from 'express';
-import { Event } from '../models/event-model';
+import Event from '../data/event-document';
 import { yearMonth, getMonthList } from '../utils/date-service';
 
 export const getAllEvents = async (req: Request, res: Response) => {

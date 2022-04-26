@@ -1,4 +1,4 @@
-import { Report } from './../../src/models/report-model';
+import { Report } from './../../src/data/report-document';
 
 describe('Report Model Tests', () => {
   describe('Validation Tests', () => {

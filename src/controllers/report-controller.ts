@@ -1,5 +1,6 @@
-import { Report, ReportDocument, ReportSummaryDocument } from '../models/report-model';
+import { Report, ReportDocument } from '../data/report-document';
 import { Request, Response } from 'express';
+import { ReportSummaryDocument } from '../models/report-summary-model';
 
 export const getAllReports = async (req: Request, res: Response) => {
   try {

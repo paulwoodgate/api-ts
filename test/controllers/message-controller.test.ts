@@ -1,13 +1,25 @@
 'use strict';
 
-import 'regenerator-runtime/runtime';
+// import 'regenerator-runtime/runtime';
 import express from 'express';
-import messageRoutes from '../routes/message-routes';
+import messageRoutes from '../../src/routes/message-routes';
 
 import request from 'supertest';
-const mockingoose = require('mockingoose');
-import Message from '../models/message-model';
-import Email from '../services/email-service';
+import Message from '../../src/data/message-document';
+import Email from '../../src/utils/email-service';
+import * as dbHandler from '../db-handler';
+
+beforeAll(async () => {
+  await dbHandler.connect();
+});
+
+afterEach(async () => {
+  await dbHandler.clearDatabase();
+});
+
+afterAll(async () => {
+  await dbHandler.closeDatabase();
+});
 
 describe('Message Controller Tests', () => {
   const app = express();
@@ -24,11 +36,6 @@ describe('Message Controller Tests', () => {
     const original = Email.sendEmail;
     Email.sendEmail = jest.fn(() => Promise.resolve(true));
 
-    mockingoose(Message).toReturn(
-      { name: 'Fred Bloggs', email: 'Fred.bloggs@gmail.com', message: 'Hello' },
-      'save'
-    );
-
     const response = await request(app).post('/api/messages').send({
       name: 'Fred Bloggs',
       email: 'Fred.bloggs@gmail.com',
@@ -37,17 +44,15 @@ describe('Message Controller Tests', () => {
     expect(response.status).toBe(200);
     expect(Email.sendEmail).toBeCalledTimes(1);
 
+    const savedMsg = await Message.findOne({email:'Fred.bloggs@gmail.com'}).exec();
+    expect(savedMsg).not.toBeNull();
+
     Email.sendEmail = original;
   });
 
   test('should return a status code of 500 if sending the email fails', async () => {
     const original = Email.sendEmail;
     Email.sendEmail = jest.fn(() => Promise.resolve(false));
-
-    mockingoose(Message).toReturn(
-      { name: 'Fred Bloggs', email: 'Fred.bloggs@gmail.com', message: 'Hello' },
-      'save'
-    );
 
     const response = await request(app).post('/api/messages').send({
       name: 'Fred Bloggs',

@@ -1,6 +1,6 @@
-import { Report } from './../../src/data/report-document';
+import { Report } from '../../src/data/report-document';
 
-describe('Report Model Tests', () => {
+describe('Report Document Tests', () => {
   describe('Validation Tests', () => {
     it('should fail validation if no event id', () => {
       const report = new Report({

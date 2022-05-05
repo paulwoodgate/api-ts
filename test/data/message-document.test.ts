@@ -1,6 +1,6 @@
-import Message from './../../src/data/message-document';
+import Message from '../../src/data/message-document';
 
-describe('Message Model Tests', () => {
+describe('Message Document Tests', () => {
   test('it should fail validation if name is missing', () => {
     const msg = new Message({
       email: '',

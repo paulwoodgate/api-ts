@@ -1,6 +1,6 @@
 import { Report, ReportDocument } from '../data/report-document';
 import { Request, Response } from 'express';
-import { ReportSummaryDocument } from '../models/report-summary-model';
+import { ReportSummaryModel } from '../models/report-summary-model';
 
 export const getAllReports = async (req: Request, res: Response) => {
   try {
@@ -54,7 +54,7 @@ export const getReport = async (req: Request, res: Response) => {
     };
     const data = await Report.findOne({ id: id }).exec();
     if (data) {
-      let reports: ReportSummaryDocument[] = [];
+      let reports: ReportSummaryModel[] = [];
       if (data.subjectType === 'Group') {
         reports = await getDayReports(id);
       }

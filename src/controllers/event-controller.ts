@@ -14,8 +14,9 @@ export const getAllEvents = async (req: Request, res: Response) => {
 
 export const getUpcomingEvents = async (req: Request, res: Response) => {
   try {
-    const now = startOfDay(new Date());
-    const data = await Event.find({ date: { $gte: now } })
+    const start = startOfDay(new Date());
+    start.setDate(start.getDate() - 14);
+        const data = await Event.find({ date: { $gte: start } })
       .sort({ date: 'asc' })
       .select('id type title image length leave date')
       .exec();

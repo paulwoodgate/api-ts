@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { formatReportDates } from '../utils/date-service';
 
-interface ReportPhoto {
+export interface ReportPhoto {
   file: string;
   caption: string;
 }

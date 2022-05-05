@@ -97,7 +97,7 @@ eventSchema.virtual('yearMonth').get(function (this: { date: Date }) {
 });
 
 function formatMiles(distance: number) {
-  if (distance === undefined) {
+  if (distance === undefined || distance === 0) {
     return '';
   }
   return `${distance} miles`;

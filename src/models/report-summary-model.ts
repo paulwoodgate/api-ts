@@ -1,4 +1,4 @@
-export interface ReportSummaryDocument {
+export interface ReportSummaryModel {
     id: string;
     date: string;
     title: string;

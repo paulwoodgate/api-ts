@@ -1,6 +1,6 @@
 import Event from './../../src/data/event-document';
 
-describe('Event Model Tests', () => {
+describe('Event Document Tests', () => {
   describe('Date Tests', () => {
     test('it should return the date of an event as Tuesday 22nd September', () => {
       const event = new Event({
@@ -56,6 +56,13 @@ describe('Event Model Tests', () => {
       expect(event.formattedLength).toBe('');
     });
 
+    it('should return empty string if value is 0', () => {
+      const event = new Event({
+        type: 'Walk',
+        length: 0
+      });
+      expect(event.formattedLength).toBe('');
+    });
     it('should return the value suffixed with miles', () => {
       const event = new Event({
         type: 'Walk',

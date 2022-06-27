@@ -13,11 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createMessage = void 0;
-const message_model_1 = require("../models/message-model");
+const message_document_1 = __importDefault(require("../data/message-document"));
 const email_service_1 = __importDefault(require("../utils/email-service"));
 const createMessage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
-    const message = new message_model_1.Message({
+    const message = new message_document_1.default({
         name: data.name,
         email: data.email,
         message: data.message,

@@ -10,7 +10,7 @@ export interface ReportDocument {
   date: Date;
   endDate: Date;
   formattedDate: string;
-  year: number;
+  year: string;
   title: string;
   subjectType: string;
   report: string[];

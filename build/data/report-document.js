@@ -52,4 +52,4 @@ reportSchema.virtual('formattedDate').get(function () {
     return (0, date_service_1.formatReportDates)(this.date, this.endDate);
 });
 exports.Report = (0, mongoose_1.model)('Report', reportSchema);
-//# sourceMappingURL=report-model.js.map
+//# sourceMappingURL=report-document.js.map

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Event = void 0;
 const mongoose_1 = require("mongoose");
 const date_service_1 = require("../utils/date-service");
 const eventSchema = new mongoose_1.Schema({
@@ -60,7 +59,7 @@ eventSchema.virtual('yearMonth').get(function () {
     return (0, date_service_1.yearMonth)(this.date);
 });
 function formatMiles(distance) {
-    if (distance === undefined) {
+    if (distance === undefined || distance === 0) {
         return '';
     }
     return `${distance} miles`;
@@ -83,5 +82,6 @@ eventSchema.virtual('formattedCost').get(function () {
     }
     return `£${this.fuelCost.toFixed(2)}`;
 });
-exports.Event = (0, mongoose_1.model)('Event', eventSchema);
-//# sourceMappingURL=event-model.js.map
+const Event = (0, mongoose_1.model)('Event', eventSchema);
+exports.default = Event;
+//# sourceMappingURL=event-document.js.map

@@ -9,7 +9,7 @@ describe('Report View Model Tests', () => {
         subjectType: 'test',
         date: new Date(2022, 5, 2),
         formattedDate:'',
-        year: 2022,
+        year: '2022',
         report: [],
         reportBy: '',
         endDate: new Date(2022, 5, 2),

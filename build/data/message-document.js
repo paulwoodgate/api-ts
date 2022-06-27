@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Message = void 0;
 const mongoose_1 = require("mongoose");
 const messageSchema = new mongoose_1.Schema({
     name: {
@@ -21,5 +20,6 @@ const messageSchema = new mongoose_1.Schema({
         default: Date.now,
     },
 });
-exports.Message = (0, mongoose_1.model)('Message', messageSchema);
-//# sourceMappingURL=message-model.js.map
+const Message = (0, mongoose_1.model)('Message', messageSchema);
+exports.default = Message;
+//# sourceMappingURL=message-document.js.map

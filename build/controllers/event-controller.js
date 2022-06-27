@@ -8,14 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEvent = exports.getUpcomingSummary = exports.getUpcomingEvents = exports.getAllEvents = void 0;
 const date_fns_1 = require("date-fns");
-const event_model_1 = require("../models/event-model");
+const event_document_1 = __importDefault(require("../data/event-document"));
 const date_service_1 = require("../utils/date-service");
 const getAllEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const results = yield event_model_1.Event.find({}).sort({ date: 'asc' }).exec();
+        const results = yield event_document_1.default.find({}).sort({ date: 'asc' }).exec();
         res.status(200).json(results);
     }
     catch (err) {
@@ -25,8 +28,9 @@ const getAllEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getAllEvents = getAllEvents;
 const getUpcomingEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const now = (0, date_fns_1.startOfDay)(new Date());
-        const data = yield event_model_1.Event.find({ date: { $gte: now } })
+        const start = (0, date_fns_1.startOfDay)(new Date());
+        start.setDate(start.getDate() - 14);
+        const data = yield event_document_1.default.find({ date: { $gte: start } })
             .sort({ date: 'asc' })
             .select('id type title image length leave date')
             .exec();
@@ -55,7 +59,7 @@ exports.getUpcomingEvents = getUpcomingEvents;
 const getUpcomingSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const now = (0, date_fns_1.startOfDay)(new Date());
-        const data = yield event_model_1.Event.find({ date: { $gte: now } })
+        const data = yield event_document_1.default.find({ date: { $gte: now } })
             .sort({ date: 'asc' })
             .limit(4)
             .select('id title date')
@@ -71,7 +75,7 @@ exports.getUpcomingSummary = getUpcomingSummary;
 const getEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        const event = yield event_model_1.Event.findOne({ id: id }).exec();
+        const event = yield event_document_1.default.findOne({ id: id }).exec();
         if (!event) {
             res.status(404).json('Event not found');
         }

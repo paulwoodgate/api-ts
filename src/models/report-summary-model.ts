@@ -1,8 +1,9 @@
 export interface ReportSummaryModel {
     id: string;
-    date: string;
+    date:Date;
+    formattedDate: string;
     title: string;
-    year: number;
+    year: string;
     coverPhoto: string;
   }
   

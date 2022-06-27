@@ -46,7 +46,8 @@ export const getReport = async (req: Request, res: Response) => {
 
       return dayReports.map((r: ReportDocument) => ({
         id: r.id,
-        date: r.formattedDate,
+        date:r.date,
+        formattedDate: r.formattedDate,
         title: r.title,
         year: r.year,
         coverPhoto: r.coverPhoto,
